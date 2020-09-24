@@ -44,11 +44,10 @@ class HomeFragment : Fragment() {
 
             setData()
         }
-        Timber.d("Test debugging")
     }
 
     private fun setData() {
-        homeViewModel.movies.observe(viewLifecycleOwner, Observer { movies ->
+        homeViewModel.movies.observe(viewLifecycleOwner, { movies ->
             if (movies != null) {
                 when (movies) {
                     is Resource.Loading -> linearShimmer.visibility = View.VISIBLE

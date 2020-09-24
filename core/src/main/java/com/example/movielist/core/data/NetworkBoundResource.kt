@@ -32,6 +32,7 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
                     emit(
                         Resource.Error(
                             apiResponse.errorMessage
+                            ,null
                         )
                     )
                 }
