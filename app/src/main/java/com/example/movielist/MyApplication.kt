@@ -10,6 +10,7 @@ import com.example.movielist.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
+import org.koin.core.logger.Level
 import timber.log.Timber
 
 class MyApplication:Application() {
@@ -21,8 +22,9 @@ class MyApplication:Application() {
         }else {
             Timber.plant(ReleaseTree())
         }
+
         startKoin {
-            androidLogger()
+            androidLogger(Level.INFO)
             androidContext(this@MyApplication)
             modules(
                 listOf(

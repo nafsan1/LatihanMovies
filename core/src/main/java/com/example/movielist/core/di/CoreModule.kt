@@ -37,7 +37,7 @@ val databaseModule = module {
 
 val networkModule = module {
     single {
-        val hostname = "api.themoviedb.org"
+        val hostname = "api-themoviedb-org"
         val certificatePinner = CertificatePinner.Builder()
             .add(hostname, "sha256/ODKjQ6+i+TVJ97JdbHWBJQ2gfxWgiphouCnTv8QypNc=")
             .add(hostname, "sha256/YZPgTZ+woNCCCIW3LH2CxQeLzB/1m42QcCTBSdgayjs=")

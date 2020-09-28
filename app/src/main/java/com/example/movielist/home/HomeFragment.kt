@@ -1,6 +1,7 @@
 package com.example.movielist.home
 
 import android.content.Intent
+import android.opengl.Visibility
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-
 import com.example.movielist.R
 import com.example.movielist.core.data.Resource
 import com.example.movielist.core.ui.MoviesAdapter
@@ -47,17 +47,21 @@ class HomeFragment : Fragment() {
     }
 
     private fun setData() {
-        homeViewModel.movies.observe(viewLifecycleOwner, { movies ->
+        homeViewModel.movies.observe(viewLifecycleOwner, Observer { movies ->
             if (movies != null) {
                 when (movies) {
-                    is Resource.Loading -> linearShimmer.visibility = View.VISIBLE
+                    is Resource.Loading -> {
+                        linearShimmer.visibility = View.VISIBLE
+                    }
                     is Resource.Success -> {
                         txtError.visibility = View.GONE
                         linearShimmer.visibility = View.GONE
                         moviesAdapter.setData(movies.data)
+
                     }
                     is Resource.Error -> {
                         linearShimmer.visibility = View.GONE
+                        txtError.visibility = View.VISIBLE
                         txtError.text = movies.message ?: getString(R.string.something_wrong)
                     }
                 }
